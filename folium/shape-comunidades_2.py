@@ -37,6 +37,50 @@ comunidadsearch = Search(
 
 popups, locations = [], []
 
+table = """
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {{
+    width:100%;
+}}
+table, th, td {{
+    border: 1px solid black;
+    border-collapse: collapse;
+}}
+th, td {{
+    padding: 5px;
+    text-align: left;
+}}
+table#t01 tr:nth-child(odd) {{
+    background-color: #eee;
+}}
+table#t01 tr:nth-child(even) {{
+   background-color:#fff;
+}}
+</style>
+</head>
+<body>
+ 
+<table id="t01">
+  <tr>
+    <td>Tipo</td>
+    <td>{}</td>
+  </tr>
+  <tr>
+    <td>Nombre </td>
+    <td>{}</td>
+  </tr>
+  <tr>
+    <td>Departamento</td>
+    <td>{}</td>
+  </tr>
+</table>
+</body>
+</html>
+""".format
+
 def SetLocations(comunidad):
     
     coordenada_x = comunidad[1].geometry.centroid.x
@@ -47,7 +91,12 @@ def SetPopups(comunidad):
     nombreComunidad = str(comunidad[1].nom_comuni)
     nombreComunidad = nombreComunidad.replace("'"," ")
     nombreComunidad = nombreComunidad.replace("`"," ")
-    return nombreComunidad
+    
+    nombreDepartamento = str(comunidad[1].nom_dpto)
+    nombreDepartamento = nombreDepartamento.replace("'"," ")
+    nombreDepartamento = nombreDepartamento.replace("`"," ")  
+    tabla = table("Comunidad capmesina", nombreComunidad, nombreDepartamento)
+    return tabla
 
 popups = list(map(SetPopups, comunidades.iterrows()))
 
