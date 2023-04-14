@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generador de informes</title>
+    </head>
+    <body>
+        <h1>Generador de informes</h1>
+        <form action="/generate_report" method="post">
+            <label for="title">Título:</label>
+            <input type="text" name="title" id="title" required><br><br>
+            <label for="summary">Resumen:</label>
+            <textarea name="summary" id="summary" rows="5" cols="50" required></textarea><br><br>
+            <input type="submit" value="Generar informe">
+        </form>
+
+        <b>{{prediccion_texto}}</b>
+    </body>
+</html>
